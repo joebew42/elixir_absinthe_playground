@@ -20,6 +20,7 @@ defmodule ElixirAbsinthePlayground.Mixfile do
 
   defp deps do
     [
+      {:poison, "~> 3.1"},
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"}

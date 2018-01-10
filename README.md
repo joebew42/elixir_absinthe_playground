@@ -1,21 +1,60 @@
 # ElixirAbsinthePlayground
 
-**TODO: Add description**
 
-## Installation
+## run the application
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_absinthe_playground` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:elixir_absinthe_playground, "~> 0.1.0"}
-  ]
-end
+```
+mix deps.get
+iex -S mix
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/elixir_absinthe_playground](https://hexdocs.pm/elixir_absinthe_playground).
+## make queries
 
+1) access to the GraphiQL web interface at `http://localhost:4000/graphiql`
+
+2) make cURL requests from the command line:
+
+```
+curl --data-binary "{\"query\":\"{posts{title body}}\",\"variables\":null,\"operationName\":null}" -H "content-type: application/json" http://localhost:4000/api
+```
+
+The accepted payload should be:
+
+```
+{
+  posts {
+    title
+    body
+  }
+}
+```
+
+## Known issues
+
+At the moment every time we try to make a query we get:
+
+```
+{
+  "errors": [
+    {
+      "message": "syntax error before: \"\\\"query\\\"\"",
+      "locations": [
+        {
+          "line": 1,
+          "column": 0
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Scratchpad
+
+**DONE**
+
+**DOING**
+
+- write a simple "hello world" GraphQL endpoint.
+
+**TODO**
