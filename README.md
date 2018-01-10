@@ -49,6 +49,11 @@ At the moment every time we try to make a query we get:
 }
 ```
 
+## Interesting resources about
+
+- [Absinthe graphql: testing and displaying changeset errors](https://elixirforum.com/t/absinthe-graphql-testing-and-displaying-changeset-errors/3375)
+- [Testing Absinthe with ExUnit](https://tosbourn.com/testing-absinthe-exunit/)
+
 ## Scratchpad
 
 **DONE**
