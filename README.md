@@ -29,26 +29,6 @@ The accepted payload should be:
 }
 ```
 
-## Known issues
-
-At the moment every time we try to make a query we get:
-
-```
-{
-  "errors": [
-    {
-      "message": "syntax error before: \"\\\"query\\\"\"",
-      "locations": [
-        {
-          "line": 1,
-          "column": 0
-        }
-      ]
-    }
-  ]
-}
-```
-
 ## Interesting resources about
 
 - [Absinthe graphql: testing and displaying changeset errors](https://elixirforum.com/t/absinthe-graphql-testing-and-displaying-changeset-errors/3375)
