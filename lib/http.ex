@@ -2,12 +2,11 @@ defmodule Http do
   use Plug.Router
 
   plug :match
-  plug :dispatch
-
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
     pass: ["*/*"],
     json_decoder: Poison
+  plug :dispatch
 
   forward "/api",
     to: Absinthe.Plug,
