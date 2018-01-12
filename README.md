@@ -38,8 +38,16 @@ The accepted payload should be:
 
 **DONE**
 
-**DOING**
-
 - write a simple "hello world" GraphQL endpoint.
 
+**DOING**
+
 **TODO**
+
+- write a test for `posts` endpoint
+- retrieve only one `post`
+- try to create a relationship between `post` and `author`
+- create a new `post`
+- update an existing `post`
+- delete an existing `post`
+- try to put a GraphQL API to the `elixir_bank_account`
