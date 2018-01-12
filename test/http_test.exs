@@ -15,15 +15,10 @@ defmodule HttpTest do
       }
       """
 
-    conn = conn(:post, "/api", graphql_payload(query, "posts"))
-    |> @router.call(@opts)
+    result = do_graphql_request("/api", query, "posts")
 
-    graphql_body = graphql_body_from(conn, "posts")
-
-    assert conn.state == :sent
-    assert conn.status == 200
-    assert Enum.member?(graphql_body, %{"title" => "A first blog post", "body" => "this is the body"})
-    assert Enum.member?(graphql_body, %{"title" => "A second blog post", "body" => "this is the second body"})
+    assert contains?(result, %{"title" => "A first blog post", "body" => "this is the body"})
+    assert contains?(result, %{"title" => "A second blog post", "body" => "this is the second body"})
   end
 
   test "should receive hello world" do
@@ -35,7 +30,17 @@ defmodule HttpTest do
     assert conn.resp_body == "hello world"
   end
 
-  defp graphql_body_from(%Plug.Conn{"resp_body": response_body}, query_name) do
+  defp contains?(enumerable, element) do
+    Enum.member?(enumerable, element)
+  end
+
+  defp do_graphql_request(endpoint, query, query_name) do
+    conn(:post, endpoint, graphql_payload(query, query_name))
+    |> @router.call(@opts)
+    |> graphql_body_for(query_name)
+  end
+
+  defp graphql_body_for(%Plug.Conn{"resp_body": response_body}, query_name) do
     %{"data" => %{^query_name => body}} = Poison.decode!(response_body)
     body
   end
