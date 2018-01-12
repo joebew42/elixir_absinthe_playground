@@ -42,9 +42,11 @@ The accepted payload should be:
 
 **DOING**
 
+- write a test for `posts` endpoint
+
 **TODO**
 
-- write a test for `posts` endpoint
+- disable DEBUG output messages for Absinthe
 - retrieve only one `post`
 - try to create a relationship between `post` and `author`
 - create a new `post`

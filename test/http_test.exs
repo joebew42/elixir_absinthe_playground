@@ -5,6 +5,27 @@ defmodule HttpTest do
   @router Http
   @opts @router.init([])
 
+  test "should get all posts" do
+    query = """
+      {
+        posts {
+          title
+          body
+        }
+      }
+      """
+
+    conn = conn(:post, "/api", graphql_payload(query, "posts"))
+    |> @router.call(@opts)
+
+    graphql_body = graphql_body_from(conn, "posts")
+
+    assert conn.state == :sent
+    assert conn.status == 200
+    assert Enum.member?(graphql_body, %{"title" => "A first blog post", "body" => "this is the body"})
+    assert Enum.member?(graphql_body, %{"title" => "A second blog post", "body" => "this is the second body"})
+  end
+
   test "should receive hello world" do
     conn = conn(:get, "/hello")
     |> @router.call(@opts)
@@ -12,5 +33,18 @@ defmodule HttpTest do
     assert conn.state == :sent
     assert conn.status == 200
     assert conn.resp_body == "hello world"
+  end
+
+  defp graphql_body_from(%Plug.Conn{"resp_body": response_body}, query_name) do
+    %{"data" => %{^query_name => body}} = Poison.decode!(response_body)
+    body
+  end
+
+  defp graphql_payload(query, name) do
+    %{
+      "operationName" => "#{name}",
+      "query" => "query #{name} #{query}",
+      "variables" => "{}"
+    }
   end
 end
