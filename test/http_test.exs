@@ -21,15 +21,6 @@ defmodule HttpTest do
     assert contains?(result, %{"title" => "A second blog post", "body" => "this is the second body"})
   end
 
-  test "should receive hello world" do
-    conn = conn(:get, "/hello")
-    |> @router.call(@opts)
-
-    assert conn.state == :sent
-    assert conn.status == 200
-    assert conn.resp_body == "hello world"
-  end
-
   defp contains?(enumerable, element) do
     Enum.member?(enumerable, element)
   end

@@ -40,12 +40,12 @@ The accepted payload should be:
 
 - write a simple "hello world" GraphQL endpoint.
 - write a test for `posts` endpoint
+- remove the `hello` endpoint
 
 **DOING**
 
 **TODO**
 
-- remove the `hello` endpoint
 - disable DEBUG output messages for Absinthe
 - retrieve only one `post`
 - try to create a relationship between `post` and `author`

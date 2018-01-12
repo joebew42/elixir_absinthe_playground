@@ -15,8 +15,4 @@ defmodule Http do
   forward "/graphiql",
     to: Absinthe.Plug.GraphiQL,
     init_opts: [schema: Schema]
-
-  get "/hello" do
-    send_resp(conn, 200, "hello world")
-  end
 end
