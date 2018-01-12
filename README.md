@@ -52,4 +52,4 @@ The accepted payload should be:
 - create a new `post`
 - update an existing `post`
 - delete an existing `post`
-- try to put a GraphQL API to the `elixir_bank_account`
+- try to put a GraphQL API to the [`elixir_bank_account`](https://github.com/joebew42/elixir_bank_account)
