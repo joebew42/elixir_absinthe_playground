@@ -29,6 +29,13 @@ The accepted payload should be:
 }
 ```
 
+## run tests
+
+```
+mix deps.get
+mix test
+```
+
 ## Interesting resources about
 
 - [Absinthe graphql: testing and displaying changeset errors](https://elixirforum.com/t/absinthe-graphql-testing-and-displaying-changeset-errors/3375)
@@ -41,8 +48,10 @@ The accepted payload should be:
 - write a simple "hello world" GraphQL endpoint.
 - write a test for `posts` endpoint
 - remove the `hello` endpoint
+- document the how to run tests in the `Readme.md`
 
 **DOING**
+
 
 **TODO**
 
