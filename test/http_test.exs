@@ -21,6 +21,21 @@ defmodule HttpTest do
     assert contains?(result, %{"title" => "A second blog post", "body" => "this is the second body"})
   end
 
+  test "should get a post" do
+    query = """
+      {
+        post(id: 1) {
+          title
+          body
+        }
+      }
+      """
+
+    result = do_graphql_request("/api", query, "post")
+
+    assert result == %{"title" => "A first blog post", "body" => "this is the body"}
+  end
+
   defp contains?(enumerable, element) do
     Enum.member?(enumerable, element)
   end

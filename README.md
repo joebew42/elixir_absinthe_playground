@@ -50,13 +50,15 @@ mix test
 - remove the `hello` endpoint
 - document the how to run tests in the `Readme.md`
 - disable DEBUG output messages for Absinthe
+- retrieve only one `post`
 
 **DOING**
 
 
 **TODO**
 
-- retrieve only one `post`
+- handle the not_found error
+- add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 - try to create a relationship between `post` and `author`
 - create a new `post`
 - update an existing `post`
