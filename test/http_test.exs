@@ -36,6 +36,21 @@ defmodule HttpTest do
     assert result == %{"title" => "A first blog post", "body" => "this is the body"}
   end
 
+  test "should get a not found error if the post does not exists" do
+    query = """
+      {
+        post(id: 999) {
+          title
+          body
+        }
+      }
+      """
+
+    errors = do_graphql_request("/api", query, "post")
+
+    assert contains?(errors, "Post with ID 999 not found")
+  end
+
   defp contains?(enumerable, element) do
     Enum.member?(enumerable, element)
   end
@@ -47,8 +62,12 @@ defmodule HttpTest do
   end
 
   defp graphql_body_for(%Plug.Conn{"resp_body": response_body}, query_name) do
-    %{"data" => %{^query_name => body}} = Poison.decode!(response_body)
-    body
+    case Poison.decode!(response_body) do
+      %{"data" => %{^query_name => nil}, "errors" => errors} ->
+        Enum.map(errors, fn(%{"message" => message}) -> message end)
+      %{"data" => %{^query_name => body}} ->
+        body
+    end
   end
 
   defp graphql_payload(query, name) do

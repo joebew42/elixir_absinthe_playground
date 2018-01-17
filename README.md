@@ -51,16 +51,16 @@ mix test
 - document the how to run tests in the `Readme.md`
 - disable DEBUG output messages for Absinthe
 - retrieve only one `post`
+- handle the not_found error on `post` query
 
 **DOING**
 
-
 **TODO**
 
-- handle the not_found error
 - add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 - try to create a relationship between `post` and `author`
 - create a new `post`
+- let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement
 - update an existing `post`
 - delete an existing `post`
 - try to put a GraphQL API to the [`elixir_bank_account`](https://github.com/joebew42/elixir_bank_account)
