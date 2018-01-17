@@ -49,13 +49,13 @@ mix test
 - write a test for `posts` endpoint
 - remove the `hello` endpoint
 - document the how to run tests in the `Readme.md`
+- disable DEBUG output messages for Absinthe
 
 **DOING**
 
 
 **TODO**
 
-- disable DEBUG output messages for Absinthe
 - retrieve only one `post`
 - try to create a relationship between `post` and `author`
 - create a new `post`
