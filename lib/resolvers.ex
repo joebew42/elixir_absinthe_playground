@@ -18,4 +18,8 @@ defmodule Resolvers do
         %{"title": "A second blog post", "body": "this is the second body"}]
     }
   end
+
+  def create_post(_parent, args, _resolution) do
+    {:ok, %{"title": Map.get(args, :title), "body": Map.get(args, :body)}}
+  end
 end

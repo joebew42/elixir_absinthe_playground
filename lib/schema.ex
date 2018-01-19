@@ -17,4 +17,14 @@ defmodule Schema do
     end
   end
 
+  mutation do
+    @desc "Create post"
+    field :create_post, type: :post do
+      arg :title, non_null(:string)
+      arg :body, non_null(:string)
+
+      resolve &Resolvers.create_post/3
+    end
+  end
+
 end

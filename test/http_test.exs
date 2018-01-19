@@ -75,6 +75,21 @@ defmodule HttpTest do
         "email" => "joe@somewhere.com"}}
   end
 
+  test "should create a new post" do
+    query = """
+      mutation CreatePost {
+        createPost(title: "A new post is born!", body: "something") {
+          title
+          body
+        }
+      }
+      """
+
+    result = do_graphql_mutation("/api", query, "CreatePost")
+
+    assert result == %{"title" => "A new post is born!", "body" => "something"}
+  end
+
   defp contains?(enumerable, element) do
     Enum.member?(enumerable, element)
   end
@@ -85,13 +100,10 @@ defmodule HttpTest do
     |> graphql_body_for(query_name)
   end
 
-  defp graphql_body_for(%Plug.Conn{"resp_body": response_body}, query_name) do
-    case Poison.decode!(response_body) do
-      %{"data" => %{^query_name => nil}, "errors" => errors} ->
-        Enum.map(errors, fn(%{"message" => message}) -> message end)
-      %{"data" => %{^query_name => body}} ->
-        body
-    end
+  defp do_graphql_mutation(endpoint, query, query_name) do
+    conn(:post, endpoint, graphql_mutation_payload(query, query_name))
+    |> @router.call(@opts)
+    |> graphql_body_for(query_name)
   end
 
   defp graphql_payload(query, name) do
@@ -100,5 +112,24 @@ defmodule HttpTest do
       "query" => "query #{name} #{query}",
       "variables" => "{}"
     }
+  end
+
+  defp graphql_mutation_payload(query, name) do
+    %{
+      "operationName" => "#{name}",
+      "query" => "#{query}",
+      "variables" => "{}"
+    }
+  end
+
+  defp graphql_body_for(%Plug.Conn{"resp_body": response_body}, query_name) do
+    case Poison.decode!(response_body) do
+      %{"data" => %{^query_name => nil}, "errors" => errors} ->
+        Enum.map(errors, fn(%{"message" => message}) -> message end)
+      %{"data" => %{^query_name => body}} ->
+        body
+      %{"data" => %{"createPost" => body}} ->
+        body
+    end
   end
 end

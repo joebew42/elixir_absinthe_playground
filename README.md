@@ -59,9 +59,10 @@ mix test
 
 **DOING**
 
+- create a new `post`
+
 **TODO**
 
-- create a new `post`
 - let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement
 - update an existing `post`
 - delete an existing `post`
