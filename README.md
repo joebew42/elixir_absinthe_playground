@@ -36,8 +36,10 @@ mix deps.get
 mix test
 ```
 
-## Interesting resources about
+## Useful resources on GraphQL/Elixir
 
+- [GraphQL official website](http://www.graphql.org)
+- [GraphQL how-to tutorials](https://www.howtographql.com/)
 - [Absinthe graphql: testing and displaying changeset errors](https://elixirforum.com/t/absinthe-graphql-testing-and-displaying-changeset-errors/3375)
 - [Testing Absinthe with ExUnit](https://tosbourn.com/testing-absinthe-exunit/)
 
@@ -52,12 +54,12 @@ mix test
 - disable DEBUG output messages for Absinthe
 - retrieve only one `post`
 - handle the not_found error on `post` query
+- add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 
 **DOING**
 
 **TODO**
 
-- add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 - try to create a relationship between `post` and `author`
 - create a new `post`
 - let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement
