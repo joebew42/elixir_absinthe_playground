@@ -95,7 +95,7 @@ defmodule HttpTest do
   end
 
   defp do_graphql_query(endpoint, query, query_name) do
-    conn(:post, endpoint, graphql_payload(query, query_name))
+    conn(:post, endpoint, graphql_query_payload(query, query_name))
     |> @router.call(@opts)
     |> graphql_body_for(query_name)
   end
@@ -106,7 +106,7 @@ defmodule HttpTest do
     |> graphql_body_for(query_name)
   end
 
-  defp graphql_payload(query, name) do
+  defp graphql_query_payload(query, name) do
     %{
       "operationName" => "#{name}",
       "query" => "query #{name} #{query}",

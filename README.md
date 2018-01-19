@@ -56,10 +56,9 @@ mix test
 - handle the not_found error on `post` query
 - add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 - try to create a relationship between `post` and `author`
+- create a new `post`
 
 **DOING**
-
-- create a new `post`
 
 **TODO**
 
