@@ -85,7 +85,7 @@ defmodule HttpTest do
       }
       """
 
-    result = do_graphql_mutation("/api", query, "CreatePost")
+    result = do_graphql_mutation("/api", query, "CreatePost", "createPost")
 
     assert result == %{"title" => "A new post is born!", "body" => "something"}
   end
@@ -100,8 +100,8 @@ defmodule HttpTest do
     |> graphql_body_for(query_name)
   end
 
-  defp do_graphql_mutation(endpoint, query, query_name) do
-    conn(:post, endpoint, graphql_mutation_payload(query, query_name))
+  defp do_graphql_mutation(endpoint, query, operation_name, query_name) do
+    conn(:post, endpoint, graphql_mutation_payload(query, operation_name))
     |> @router.call(@opts)
     |> graphql_body_for(query_name)
   end
@@ -114,9 +114,9 @@ defmodule HttpTest do
     }
   end
 
-  defp graphql_mutation_payload(query, name) do
+  defp graphql_mutation_payload(query, operation_name) do
     %{
-      "operationName" => "#{name}",
+      "operationName" => "#{operation_name}",
       "query" => "#{query}",
       "variables" => "{}"
     }
@@ -127,8 +127,6 @@ defmodule HttpTest do
       %{"data" => %{^query_name => nil}, "errors" => errors} ->
         Enum.map(errors, fn(%{"message" => message}) -> message end)
       %{"data" => %{^query_name => body}} ->
-        body
-      %{"data" => %{"createPost" => body}} ->
         body
     end
   end
