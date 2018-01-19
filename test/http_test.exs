@@ -51,6 +51,30 @@ defmodule HttpTest do
     assert contains?(errors, "Post with ID 999 not found")
   end
 
+  test "should get a post and its author" do
+    query = """
+      {
+        post(id: 1) {
+          title
+          body
+          author {
+            name
+            email
+          }
+        }
+      }
+      """
+
+    result = do_graphql_request("/api", query, "post")
+
+    assert result == %{
+      "title" => "A first blog post",
+      "body" => "this is the body",
+      "author" => %{
+        "name" => "joe",
+        "email" => "joe@somewhere.com"}}
+  end
+
   defp contains?(enumerable, element) do
     Enum.member?(enumerable, element)
   end

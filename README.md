@@ -55,12 +55,12 @@ mix test
 - retrieve only one `post`
 - handle the not_found error on `post` query
 - add in the `interesting resources` paragraph links to graphql.org and howtographql.org
+- try to create a relationship between `post` and `author`
 
 **DOING**
 
 **TODO**
 
-- try to create a relationship between `post` and `author`
 - create a new `post`
 - let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement
 - update an existing `post`
