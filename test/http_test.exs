@@ -15,7 +15,7 @@ defmodule HttpTest do
       }
       """
 
-    result = do_graphql_request("/api", query, "posts")
+    result = do_graphql_query("/api", query, "posts")
 
     assert contains?(result, %{"title" => "A first blog post", "body" => "this is the body"})
     assert contains?(result, %{"title" => "A second blog post", "body" => "this is the second body"})
@@ -31,7 +31,7 @@ defmodule HttpTest do
       }
       """
 
-    result = do_graphql_request("/api", query, "post")
+    result = do_graphql_query("/api", query, "post")
 
     assert result == %{"title" => "A first blog post", "body" => "this is the body"}
   end
@@ -46,7 +46,7 @@ defmodule HttpTest do
       }
       """
 
-    errors = do_graphql_request("/api", query, "post")
+    errors = do_graphql_query("/api", query, "post")
 
     assert contains?(errors, "Post with ID 999 not found")
   end
@@ -65,7 +65,7 @@ defmodule HttpTest do
       }
       """
 
-    result = do_graphql_request("/api", query, "post")
+    result = do_graphql_query("/api", query, "post")
 
     assert result == %{
       "title" => "A first blog post",
@@ -94,7 +94,7 @@ defmodule HttpTest do
     Enum.member?(enumerable, element)
   end
 
-  defp do_graphql_request(endpoint, query, query_name) do
+  defp do_graphql_query(endpoint, query, query_name) do
     conn(:post, endpoint, graphql_payload(query, query_name))
     |> @router.call(@opts)
     |> graphql_body_for(query_name)
