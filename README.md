@@ -57,12 +57,13 @@ mix test
 - add in the `interesting resources` paragraph links to graphql.org and howtographql.org
 - try to create a relationship between `post` and `author`
 - create a new `post`
+- maybe we can remove duplication or even improve the way we make graphql query in the tests (look at `do_graphql_query` and `do_graphql_mutation`)
+
 
 **DOING**
 
 **TODO**
 
-- maybe we can remove duplication or event improve the way we make graphql query in the tests (look at `do_graphql_query` and `do_graphql_mutation`)
 - let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement
 - update an existing `post`
 - delete an existing `post`

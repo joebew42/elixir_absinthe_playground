@@ -96,12 +96,16 @@ defmodule HttpTest do
 
   defp do_graphql_query(endpoint, query, query_name) do
     conn(:post, endpoint, graphql_query_payload(query, query_name))
-    |> @router.call(@opts)
-    |> graphql_body_for(query_name)
+    |> do_graphql_request(query_name)
   end
 
   defp do_graphql_mutation(endpoint, query, operation_name, query_name) do
     conn(:post, endpoint, graphql_mutation_payload(query, operation_name))
+    |> do_graphql_request(query_name)
+  end
+
+  defp do_graphql_request(conn, query_name) do
+    conn
     |> @router.call(@opts)
     |> graphql_body_for(query_name)
   end
