@@ -29,4 +29,8 @@ defmodule Resolvers do
   def update_post(_parent, args, _resolution) do
     {:ok, %{"title": Map.get(args, :title), "body": Map.get(args, :body)}}
   end
+
+  def delete_post(_parent, %{id: id}, _resolution) do
+    {:ok, %{"id": id}}
+  end
 end

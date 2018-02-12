@@ -7,6 +7,7 @@ defmodule Types do
   end
 
   object :post do
+    field :id, :id
     field :title, :string
     field :body, :string
     field :author, :author

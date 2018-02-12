@@ -120,6 +120,20 @@ defmodule HttpTest do
     assert contains?(errors, "Post with ID 999 not found")
   end
 
+  test "should delete an existing post" do
+    query = """
+      mutation DeletePost {
+        deletePost(id: 1) {
+          id
+        }
+      }
+      """
+
+    result = do_graphql_mutation("/api", query, "DeletePost", "deletePost")
+
+    assert result == %{"id" => "1"}
+  end
+
   defp contains?(enumerable, element), do: Enum.member?(enumerable, element)
 
   defp do_graphql_query(endpoint, query, query_name) do

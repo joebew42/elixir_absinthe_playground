@@ -34,6 +34,13 @@ defmodule Schema do
 
       resolve &Resolvers.update_post/3
     end
+
+    @desc "Delete post"
+    field :delete_post, type: :post do
+      arg :id, non_null(:id)
+
+      resolve &Resolvers.delete_post/3
+    end
   end
 
 end
