@@ -58,14 +58,13 @@ mix test
 - try to create a relationship between `post` and `author`
 - create a new `post`
 - maybe we can remove duplication or even improve the way we make graphql query in the tests (look at `do_graphql_query` and `do_graphql_mutation`)
-
+- update an existing `post`
 
 **DOING**
 
-- update an existing `post`
-
 **TODO**
 
+- learn what the `parent` and `resolution` arguments for each resolvers stands for
 - delete an existing `post`
 - try to put a GraphQL API to the [`elixir_bank_account`](https://github.com/joebew42/elixir_bank_account)
 - let's try to refactor the `graphql_body_for` function to use pattern matching instead of case statement

@@ -90,6 +90,36 @@ defmodule HttpTest do
     assert result == %{"title" => "A new post is born!", "body" => "something"}
   end
 
+  test "should update an existing post" do
+    query = """
+      mutation UpdatePost {
+        updatePost(id: 1, title: "A modified title", body: "something modified") {
+          title
+          body
+        }
+      }
+      """
+
+    result = do_graphql_mutation("/api", query, "UpdatePost", "updatePost")
+
+    assert result == %{"title" => "A modified title", "body" => "something modified"}
+  end
+
+  test "should return a not found error when trying to update an unexisting post" do
+    query = """
+      mutation UpdatePost {
+        updatePost(id: 999, title: "A modified title", body: "something modified") {
+          title
+          body
+        }
+      }
+      """
+
+    errors = do_graphql_mutation("/api", query, "UpdatePost", "updatePost")
+
+    assert contains?(errors, "Post with ID 999 not found")
+  end
+
   defp contains?(enumerable, element), do: Enum.member?(enumerable, element)
 
   defp do_graphql_query(endpoint, query, query_name) do

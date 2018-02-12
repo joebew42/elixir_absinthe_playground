@@ -22,4 +22,11 @@ defmodule Resolvers do
   def create_post(_parent, args, _resolution) do
     {:ok, %{"title": Map.get(args, :title), "body": Map.get(args, :body)}}
   end
+
+  def update_post(_parent, %{id: id}, _resolution) when id == "999" do
+    {:error, "Post with ID #{id} not found"}
+  end
+  def update_post(_parent, args, _resolution) do
+    {:ok, %{"title": Map.get(args, :title), "body": Map.get(args, :body)}}
+  end
 end

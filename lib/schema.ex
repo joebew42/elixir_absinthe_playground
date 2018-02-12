@@ -25,6 +25,15 @@ defmodule Schema do
 
       resolve &Resolvers.create_post/3
     end
+
+    @desc "Update post"
+    field :update_post, type: :post do
+      arg :id, non_null(:id)
+      arg :title, non_null(:string)
+      arg :body, non_null(:string)
+
+      resolve &Resolvers.update_post/3
+    end
   end
 
 end
