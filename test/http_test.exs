@@ -90,9 +90,7 @@ defmodule HttpTest do
     assert result == %{"title" => "A new post is born!", "body" => "something"}
   end
 
-  defp contains?(enumerable, element) do
-    Enum.member?(enumerable, element)
-  end
+  defp contains?(enumerable, element), do: Enum.member?(enumerable, element)
 
   defp do_graphql_query(endpoint, query, query_name) do
     conn(:post, endpoint, graphql_query_payload(query, query_name))
